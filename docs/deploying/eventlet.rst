@@ -34,8 +34,8 @@ Create a virtualenv, install your application, then install
 .. code-block:: text
 
     $ cd hello-app
-    $ python -m venv venv
-    $ . venv/bin/activate
+    $ python -m venv .venv
+    $ . .venv/bin/activate
     $ pip install .  # install your application
     $ pip install eventlet
 
@@ -44,7 +44,7 @@ Running
 -------
 
 To use eventlet to serve your application, write a script that imports
-its ```wsgi.server``, as well as your app or app factory.
+its ``wsgi.server``, as well as your app or app factory.
 
 .. code-block:: python
     :caption: ``wsgi.py``
@@ -54,7 +54,7 @@ its ```wsgi.server``, as well as your app or app factory.
     from hello import create_app
 
     app = create_app()
-    wsgi.server(eventlet.listen(("127.0.0.1", 8000), app)
+    wsgi.server(eventlet.listen(("127.0.0.1", 8000)), app)
 
 .. code-block:: text
 

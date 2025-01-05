@@ -28,7 +28,7 @@ It is important to understand the difference between templates and
 JavaScript. Templates are rendered on the server, before the response is
 sent to the user's browser. JavaScript runs in the user's browser, after
 the template is rendered and sent. Therefore, it is impossible to use
-JavaScript to affect how the Jinja template is rendered, but is is
+JavaScript to affect how the Jinja template is rendered, but it is
 possible to render data into the JavaScript that will run.
 
 To provide data to JavaScript when rendering the template, use the
@@ -125,8 +125,8 @@ in a Flask view.
 .. code-block:: javascript
 
     let data = new FormData()
-    data.append("name": "Flask Room")
-    data.append("description": "Talk about Flask here.")
+    data.append("name", "Flask Room")
+    data.append("description", "Talk about Flask here.")
     fetch(room_url, {
         "method": "POST",
         "body": data,
@@ -184,8 +184,8 @@ Replacing Content
 A response might be new HTML, either a new section of the page to add or
 replace, or an entirely new page. In general, if you're returning the
 entire page, it would be better to handle that with a redirect as shown
-in the previous section. The following example shows how to a ``<div>``
-with the HTML returned by a request.
+in the previous section. The following example shows how to replace a
+``<div>`` with the HTML returned by a request.
 
 .. code-block:: html
 
@@ -197,7 +197,7 @@ with the HTML returned by a request.
         const geology_div = getElementById("geology-fact")
         fetch(geology_url)
             .then(response => response.text)
-            .then(text => geology_div.innerHtml = text)
+            .then(text => geology_div.innerHTML = text)
     </script>
 
 
